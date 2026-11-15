@@ -1,0 +1,124 @@
+﻿@model List<MVCQuiz.Models.QuizQuestion>
+
+@{
+    ViewData["Title"] = "ASP.NET Core MVC Quiz";
+}
+
+<style>
+    body {
+        background-color: #f3f4f6;
+    }
+
+    .quiz-container {
+        max-width: 1000px;
+        margin: 40px auto;
+    }
+
+    .quiz-header {
+        background: #1e293b;
+        color: white;
+        padding: 35px;
+        border-radius: 12px;
+        margin-bottom: 25px;
+    }
+
+    .question-card {
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        margin-bottom: 22px;
+        box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+    }
+
+    .question-number {
+        color: #2563eb;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .question-text {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+
+    .option {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        padding: 12px 15px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+    }
+
+    .correct-answer {
+        background: #dcfce7;
+        border: 1px solid #86efac;
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 18px;
+        color: #166534;
+    }
+
+    .explanation {
+        margin-top: 10px;
+        color: #475569;
+    }
+
+    .footer {
+        text-align: center;
+        padding: 25px;
+        color: #64748b;
+    }
+</style>
+
+<div class="container quiz-container">
+
+    <div class="quiz-header">
+        <h1>ASP.NET Core MVC Quiz</h1>
+
+        <p>
+            Questions and Answers about Server-Side Rendering,
+            Web API Architecture, RESTful Services, and HTTP.
+        </p>
+
+        <span class="badge bg-primary">
+            @Model.Count Questions
+        </span>
+    </div>
+
+    @foreach (var item in Model)
+    {
+        <div class="question-card">
+
+            <div class="question-number">
+                QUESTION @item.Number
+            </div>
+
+            <div class="question-text">
+                @item.Question
+            </div>
+
+            @foreach (var option in item.Options)
+            {
+                <div class="option">
+                    @option
+                </div>
+            }
+
+            <div class="correct-answer">
+                <strong>Correct Answer: @item.CorrectAnswer</strong>
+            </div>
+
+            <div class="explanation">
+                <strong>Explanation:</strong>
+                @item.Explanation
+            </div>
+
+        </div>
+    }
+
+    <div class="footer">
+        ASP.NET Core MVC Quiz | Created using ASP.NET Core MVC
+    </div>
+
+</div>
